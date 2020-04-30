@@ -30,7 +30,8 @@ func nextInt() int {
 }
 
 func main() {
-	sc.Split(bufio.ScanWords)
+	sc.Split(bufio.ScanWords) //スペース区切り
+	// sc.Split(bufio.ScanLines) //1行まるごと
 	var n int
 	n = nextInt()
 ...
