@@ -61,6 +61,11 @@ func Min(a, b int) int {
 l := strings.Split(str, " ")
 ```
 
+
+### Join array to a string with whitespace
+```
+strings.Join(arr, ",")
+```
 ### Cast String <-> Int
 ```
 val_int, _ := strconv.Atoi(val_str)
