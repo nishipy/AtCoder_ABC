@@ -55,3 +55,13 @@ func Min(a, b int) int {
 	}
 }
 ```
+
+### Split a string on whitespace
+```
+l := strings.Split(str, " ")
+```
+
+### Cast String <-> Int
+```
+val_int, _ := strconv.Atoi(val_str)
+```
