@@ -77,4 +77,9 @@ val_int, _ := strconv.Atoi(val_str)
 func arrayAsString(arr []int) string {
 	return strings.TrimRight(fmt.Sprintf("%+v", arr)[1:], "]")
 }
+
+//Or
+for i:= 0; i<len(array); i++ {
+	fmt.Printf("%d ", array[i])
+}
 ```
