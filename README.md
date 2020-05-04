@@ -66,7 +66,15 @@ l := strings.Split(str, " ")
 ```
 strings.Join(arr, ",")
 ```
-### Cast String <-> Int
+### Cast String -> Int
 ```
 val_int, _ := strconv.Atoi(val_str)
+```
+
+### Display array like as string
+```
+// e.g.) [1, 2, 3, 4, 5] -> 1 2 3 4 5
+func arrayAsString(arr []int) string {
+	return strings.TrimRight(fmt.Sprintf("%+v", arr)[1:], "]")
+}
 ```
