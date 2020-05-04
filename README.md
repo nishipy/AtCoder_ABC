@@ -66,9 +66,18 @@ l := strings.Split(str, " ")
 ```
 strings.Join(arr, ",")
 ```
-### Cast String -> Int
+### Cast String <-> Int
 ```
-val_int, _ := strconv.Atoi(val_str)
+var i int
+var s string="123"
+i, _ = strconv.Atoi(s)
+fmt.Println(i) // -> 123
+```
+```
+var i int=321
+var s string
+s = strconv.Itoa(i)
+fmt.Println(s) // -> "123"
 ```
 
 ### Display array like as string
