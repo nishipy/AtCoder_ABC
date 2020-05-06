@@ -80,9 +80,19 @@ s = strconv.Itoa(i)
 fmt.Println(s) // -> "123"
 ```
 
-### Display array like as string
+### Display []int like as string
 ```
-// e.g.) [1, 2, 3, 4, 5] -> 1 2 3 4 5
+//with buf.Flush()
+func printList(list []int) {
+	buf := bufio.NewWriter(os.Stdout)
+	for _, v := range list {
+		buf.Write([]byte(fmt.Sprintf(" %d", v)))
+	}
+	buf.Write([]byte("\n"))
+	buf.Flush()
+}
+
+//Or
 func arrayAsString(arr []int) string {
 	return strings.TrimRight(fmt.Sprintf("%+v", arr)[1:], "]")
 }
@@ -91,4 +101,6 @@ func arrayAsString(arr []int) string {
 for i:= 0; i<len(array); i++ {
 	fmt.Printf("%d ", array[i])
 }
+
+
 ```
