@@ -92,3 +92,11 @@ for i:= 0; i<len(array); i++ {
 	fmt.Printf("%d ", array[i])
 }
 ```
+
+### 2進数に変換
+```
+b := fmt.Sprintf("%b", 2)
+//0埋め4文字
+//b := fmt.Sprintf("%04b", 2)
+fmt.Println(b)
+```
