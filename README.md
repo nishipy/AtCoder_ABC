@@ -112,3 +112,25 @@ b := fmt.Sprintf("%b", 2)
 //b := fmt.Sprintf("%04b", 2)
 fmt.Println(b)
 ```
+
+### GCD
+```
+func gcd(a, b int) int {
+    if b == 0 {
+        return a
+    }
+    return gcd(b, a%b)
+}
+```
+
+### GCD with math/big
+```
+func gcd(m, n uint64) uint64 {
+    x := new(big.Int)
+    y := new(big.Int)
+    z := new(big.Int)
+    a := new(big.Int).SetUint64(m)
+    b := new(big.Int).SetUint64(n)
+    return z.GCD(x, y, a, b).Uint64()
+}
+```
