@@ -52,10 +52,15 @@ var sc = bufio.NewScanner(os.Stdin)
 func main() {
 	sc.Split(bufio.ScanWords)
 	K, A, B := nextInt(), nextInt(), nextInt()
+
+	fmt.Println(solution(A, B, K))
+
+}
+
+func solution(A, B, K int) string {
 	ans := "NG"
 	if B%K == 0 || B%K <= B-A {
 		ans = "OK"
 	}
-	fmt.Println(ans)
-
+	return ans
 }
