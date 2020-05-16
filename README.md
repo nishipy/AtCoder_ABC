@@ -134,3 +134,23 @@ func gcd(m, n uint64) uint64 {
     return z.GCD(x, y, a, b).Uint64()
 }
 ```
+
+## Define and use map
+```
+func main() {
+	sc.Split(bufio.ScanWords)
+	n = nextInt()
+	m := make(map[string]int, n)
+	for i := 0; i < n; i++ {
+		s = nextStr()
+		//mapにkeyが存在するか判定
+		if _, ok := m[s]; ok {
+			m[s]++
+		} else {
+			m[s] = 1
+		}
+	}
+	//fmt.Println(m)
+	fmt.Println(len(m))
+}
+```
