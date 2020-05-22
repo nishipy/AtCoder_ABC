@@ -205,11 +205,14 @@ fmt.Println(p)
 ```
 または、
 ```go
-type Arms []Arm
+sort.Sort(SortBy(cad))
 
-func (a Arms) Len() int           { return len(a) }
-func (a Arms) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
-func (a Arms) Less(i, j int) bool { return a[i].r < a[j].r }
+type SortBy []string
+
+func (a SortBy) Len() int           { return len(a) }
+func (a SortBy) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
+func (a SortBy) Less(i, j int) bool { return a[i] < a[j] }
+
 ```
 
 
@@ -262,5 +265,12 @@ func (a Arms) Less(i, j int) bool { return a[i].r < a[j].r }
       * 終端でソートする
       * 共通部分ができる限りはOK
       * https://drken1215.hatenablog.com/entry/2018/07/21/224200
+* 辞書式順序最小を求める問題
+  * 不定のところには、'a'をいれて、候補のリストを作る
+  * 候補をsortする
+    * `sort.Strings(cad)`など
+  * 例
+    * [C - Dubious Document 2](./076/main.go)
 
+---
 [*1]: https://qiita.com/drken/items/e77685614f3c6bf86f44
