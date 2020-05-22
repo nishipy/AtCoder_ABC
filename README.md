@@ -139,7 +139,7 @@ func gcd(m, n uint64) uint64 {
 }
 ```
 
-## Define and use map
+### Define and use map
 ```go
 func main() {
 	sc.Split(bufio.ScanWords)
@@ -159,7 +159,7 @@ func main() {
 }
 ```
 
-## rune
+### rune
 * 文字列など、文字単位で扱う時に使う
 * [String と　Rune](https://text.baldanders.info/golang/string-and-rune/)
   * 例
@@ -185,7 +185,36 @@ func main() {
   * string -> rune -> stringと変換していけば、安全に処理できる
 * 例ABC061 C
 
-## グラフ問題
+### Sort
+```go
+// Intをsort(昇順）
+sort.Ints(i)
+fmt.Println(i)
+
+// stringをアルファベット順にsort
+sort.Strings(s)
+fmt.Println(s)
+
+// structをStringでsort (名前順)
+sort.Slice(p, func(i, j int) bool { return p[i].Name < p[j].Name })
+fmt.Println(p)
+
+// structをIntでsort (昇順）
+sort.Slice(p, func(i, j int) bool { return p[i].Point < p[j].Point })
+fmt.Println(p)
+```
+または、
+```go
+type Arms []Arm
+
+func (a Arms) Len() int           { return len(a) }
+func (a Arms) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
+func (a Arms) Less(i, j int) bool { return a[i].r < a[j].r }
+```
+
+
+## アルゴリズム系[*1]
+### グラフ問題
 * 可視化サイト
   * https://hello-world-494ec.firebaseapp.com/
 * 幅優先探索
@@ -206,7 +235,7 @@ func main() {
     * [ABC054 - C](./054/C/main.go)
 
 
-## bit全探索
+### bit全探索
 * 2^n通りの組み合わせを、2進数を用いて解くやつ
   * [Golangのビット演算](https://hydrocul.github.io/wiki/programming_languages_diff/number/bit-operator.html)
     * `&`, `|` : AND, OR
@@ -217,8 +246,15 @@ func main() {
   * [045 C](./045/C/main.go)
   * [079 C](./079/C/main.go)
 
-## Greedy
-* ある段階で、最も利益の大きい部分解を選択していく
-* 必ずしも、最適解になるとは限らない
-  * 高速なので、他の手法と組み合わせて使う
+### Greedy
 * [グリーディ法](http://www2.kobe-u.ac.jp/~ky/da2/haihu04.pdf)
+  * ある段階で、最も利益の大きい部分解を選択していく
+  * 必ずしも、最適解になるとは限らない
+    * 高速なので、他の手法と組み合わせて使う
+* 区間スケジューリング
+  * 区間の終端もしくは始端でソートする
+  * 例
+    * [B - Robot Arms](./keyence2020/B/main.go)
+
+
+[*1]: https://qiita.com/drken/items/e77685614f3c6bf86f44
