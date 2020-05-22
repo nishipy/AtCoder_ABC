@@ -255,6 +255,12 @@ func (a Arms) Less(i, j int) bool { return a[i].r < a[j].r }
   * 区間の終端もしくは始端でソートする
   * 例
     * [B - Robot Arms](./keyence2020/B/main.go)
-
+* 双対問題
+  * 実際は区間スケジューリング問題
+  * 例
+    * [103 D - Islands War](./103/D/main.go)
+      * 終端でソートする
+      * 共通部分ができる限りはOK
+      * https://drken1215.hatenablog.com/entry/2018/07/21/224200
 
 [*1]: https://qiita.com/drken/items/e77685614f3c6bf86f44
