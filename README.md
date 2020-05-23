@@ -272,5 +272,19 @@ func (a SortBy) Less(i, j int) bool { return a[i] < a[j] }
   * 例
     * [C - Dubious Document 2](./076/main.go)
 
+## 動的計画法(DP)
+* 値を覚えて再利用することで、処理を効率化する
+* [ナップザック問題](https://onlinejudge.u-aizu.ac.jp/problems/DPL_1_B)
+  * [解説記事](https://qiita.com/drken/items/a5e6fe22863b7992efdb)
+    * `dp[i][w]`を、i番目までの商品の中から容量を超えないように選んだときの価値の総和の最大値とする
+    * これを漸化式と見立てて解いていく
+  	  ![解説記事から引用](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F0%2F182963%2Ffcd3c29a-9f3e-7984-3549-21fa113fab26.jpeg?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&s=e12b1a6b61eb9cc97d783b848bdea6c4)
+  * 例
+    * [TDPC - A](TDPC/A/main.go)
+    * [TDPC - C](TDPC/C/main.go)
+
+
+
+
 ---
 [*1]: https://qiita.com/drken/items/e77685614f3c6bf86f44
