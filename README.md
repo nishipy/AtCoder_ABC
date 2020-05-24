@@ -2,6 +2,36 @@
 My solutions for AtCoder Beginner Contest problems.
 
 ## Tips - Golang
+### make関数
+* 引数
+  * 左から、型、長さ、キャパシティー
+  * キャパシティを省略した場合、長さと同じだけ確保する
+```go
+a :=  make([]int, 0, 5)
+```
+### Pointer
+* `*`間接参照演算子
+  * ポインタを定義。また、ポインタの中身を取得
+* `&`: アドレス演算子
+  * アドレスを取得
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var pointer *int
+	var n int = 100
+
+	//nのアドレスを代入
+	pointer = &n
+
+	fmt.Println(&n, pointer) //nのアドレス
+	fmt.Println(*pointer) //pointerの中身=nの値を表示
+}
+```
 ### Input data
 ```go
 package main
@@ -291,6 +321,14 @@ func (a SortBy) Less(i, j int) bool { return a[i] < a[j] }
   	* X[i] != Y[j]ならば、dp[i-1][j]とdp[i][j-1]の大きい方を格納
   * その他の例題
     * [C - Optimal Recommendations](https://atcoder.jp/contests/indeednow-finala-open/tasks/indeednow_2015_finala_c)
+
+## データ構造
+* priority_queue
+  * [例題](https://atcoder.jp/contests/code-thanks-festival-2017-open/tasks/code_thanks_festival_2017_c)
+  * [解答](./CodeThanksFestival2017/C/main.go)
+  * 優先度付きキュー
+  * キューに対して、要素を優先度付きで追加する
+  * 最も優先度の高い要素を取り除き、それを返す
 
 
 
