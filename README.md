@@ -279,9 +279,18 @@ func (a SortBy) Less(i, j int) bool { return a[i] < a[j] }
     * `dp[i][w]`を、i番目までの商品の中から容量を超えないように選んだときの価値の総和の最大値とする
     * これを漸化式と見立てて解いていく
   	  ![解説記事から引用](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F0%2F182963%2Ffcd3c29a-9f3e-7984-3549-21fa113fab26.jpeg?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&s=e12b1a6b61eb9cc97d783b848bdea6c4)
-  * 例
+  * 他の例題
     * [TDPC - A](TDPC/A/main.go)
     * [TDPC - C](TDPC/C/main.go)
+* [最長共通部分列][http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_10_C&lang=jp]
+  * コードは、[こちら](./AOJ/ALDS1_10_C/main.go#l75)
+  * 文字列S1とS2の最長共通部分を求める問題
+    * `dp[i][j]`に、`S1`のi文字目までと`S2`のj文字目までの最長共通部分列の長さを格納する
+      * X[i] == Y[j]ならば、dp[i-1][j-1]+1を格納
+        * i-1文字目とj-1文字目までのLCSの長さに1を足せばよい
+  	* X[i] != Y[j]ならば、dp[i-1][j]とdp[i][j-1]の大きい方を格納
+  * その他の例題
+    * [C - Optimal Recommendations](https://atcoder.jp/contests/indeednow-finala-open/tasks/indeednow_2015_finala_c)
 
 
 
