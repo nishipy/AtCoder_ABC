@@ -322,6 +322,11 @@ func (a SortBy) Less(i, j int) bool { return a[i] < a[j] }
   * その他の例題
     * [C - Optimal Recommendations](https://atcoder.jp/contests/indeednow-finala-open/tasks/indeednow_2015_finala_c)
 
+## Union-Find木
+* グループ分けを、木構造で管理する
+* [例題](https://atcoder.jp/contests/atc001/tasks/unionfind_a)
+  * [実装例](./ATC001/B/main.go)
+
 ## データ構造
 * priority_queue
   * [例題](https://atcoder.jp/contests/code-thanks-festival-2017-open/tasks/code_thanks_festival_2017_c)
