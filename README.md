@@ -33,6 +33,8 @@ func main() {
 }
 ```
 ### Input data
+* 注意‼︎
+  * [Goのbufio.Scannerは入力データの1行の長さが一定以上になるとスキャンをやめてしまう](https://mickey24.hatenablog.com/entry/bufio_scanner_line_length)
 ```go
 package main
 
@@ -215,6 +217,11 @@ func main() {
   * string -> rune -> stringと変換していけば、安全に処理できる
 * 例ABC061 C
 
+### 文字列の置き換え
+* [参考](https://qiita.com/Sekky0905/items/f0bed43ad3ab4be13385)
+```
+
+```
 ### Sort
 ```go
 // Intをsort(昇順）
