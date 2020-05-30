@@ -35,6 +35,7 @@ func main() {
 ### Input data
 * 注意‼︎
   * [Goのbufio.Scannerは入力データの1行の長さが一定以上になるとスキャンをやめてしまう](https://mickey24.hatenablog.com/entry/bufio_scanner_line_length)
+  * 入力が大きい時は、単純に`fmt.Scan()`をする方がいい
 ```go
 package main
 
