@@ -35,7 +35,10 @@ func main() {
 ### Input data
 * 注意‼︎
   * [Goのbufio.Scannerは入力データの1行の長さが一定以上になるとスキャンをやめてしまう](https://mickey24.hatenablog.com/entry/bufio_scanner_line_length)
-  * 入力が大きい時は、単純に`fmt.Scan()`をする方がいい
+  * [bufio.Scannerのエラーと解決策 #golang](https://inaba.hatenablog.com/entry/2017/02/19/045844)
+    * 入力が大きい時は、単純に`fmt.Scan()`をする方がいい
+    * もしくは、最大サイズを指定する
+
 ```go
 package main
 
@@ -46,7 +49,20 @@ import (
 	"strconv"
 )
 
-var sc = bufio.NewScanner(os.Stdin)
+const (
+	initialBufSize = 10000
+	maxBufSize     = 1000000
+	mod            = 1e9 + 7
+)
+
+var (
+	sc *bufio.Scanner = func() *bufio.Scanner {
+		sc := bufio.NewScanner(os.Stdin)
+		buf := make([]byte, initialBufSize)
+		sc.Buffer(buf, maxBufSize)
+		return sc
+	}()
+)
 
 func nextStr() string {
 	sc.Scan()
@@ -220,9 +236,32 @@ func main() {
 
 ### 文字列の置き換え
 * [参考](https://qiita.com/Sekky0905/items/f0bed43ad3ab4be13385)
+
+### 文字列の反転
+```go
+func reverse(s string) string {
+	runes := []rune(s)
+	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
+		runes[i], runes[j] = runes[j], runes[i]
+	}
+	return string(runes)
+}
 ```
 
+### 文字列の連結
+* サイズが大きくなると、`[]byte`にappendするのが速い
+  * [Golang の文字列連結はどちらが速い？](https://qiita.com/spiegel-im-spiegel/items/16ab7dabbd0749281227)
+  *  例題
+     *  [158 D](158/D/main.go)
+
+### 累乗
+* math.Pow()は、float64型なので、Int型を用意
 ```
+func pow(p, q int) int {
+	return int(math.Pow(float64(p), float64(q)))
+}
+```
+
 ### Sort
 ```go
 // Intをsort(昇順）
