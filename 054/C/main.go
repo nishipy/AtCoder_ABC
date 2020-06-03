@@ -74,9 +74,13 @@ var matrix [8][]int
 var ans int
 
 func dfs(done []bool, now, depth int) {
+
 	//再帰の終了条件
 	if depth == N-1 {
 		ans++
+		//すべての節を訪問できたら、ansをインクリメントして
+		//for文に戻り、次の候補を探索
+		//ここでは①に隣接する次の候補
 		return
 	}
 
@@ -93,8 +97,10 @@ func dfs(done []bool, now, depth int) {
 		dfs(done, nv, depth+1)
 	}
 
-	//次の候補が無くなったら、自分を未訪問として、次の候補に移る！！
+	//次の候補が無くなったら、自分を未訪問とする
+	//最初に呼び出した時の、上のfor文に戻り、次の候補を探索
 	done[now] = false
+
 }
 
 func main() {

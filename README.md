@@ -328,6 +328,32 @@ func (a SortBy) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
 func (a SortBy) Less(i, j int) bool { return a[i] < a[j] }
 
 ```
+### 素数判定
+```
+func isPrime(x int) bool {
+	if x == 1 {
+		return false
+	}
+	if x == 2 {
+		return true
+	}
+	if x%2 == 0 {
+		return false
+	}
+
+	b := true
+	rootx := int(math.Sqrt(float64(x)))
+	i := 3
+	for i <= rootx {
+		if x%i == 0 {
+			b = false
+			break
+		}
+		i += 2
+	}
+	return b
+}
+```
 
 ### 素因数分解
 ```
@@ -372,7 +398,7 @@ func PrimeFactors(n int) (pfs []int) {
       * キューが空になるまで処理を繰り返す
     * 例
       * [168 D - .. (Double Dots)](./168/D/main.go)
-* 深さ優先探索
+* 深さ優先探索(DFS)
   * 塗り潰し問題、全探索問題
   * 次の訪問先をスタックして、進めていく
   * 例
