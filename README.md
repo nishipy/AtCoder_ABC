@@ -254,6 +254,43 @@ func reverse(s string) string {
   *  例題
      *  [158 D](158/D/main.go)
 
+### 文字列の中に含まれる、任意の文字列の位置
+* https://ashitani.jp/golangtips/tips_string.html#string_Find
+* [151 - A](151/A/main.go)
+```
+func main() {
+	sc.Split(bufio.ScanWords)
+	c = nextStr()
+
+	alphabet := "abcdefghijklmnopqrstuvwxyz"
+
+	i := strings.Index(alphabet, c)
+	fmt.Println(string(alphabet[i+1]))
+
+}
+```
+
+### 文字列の中に含まれる、任意の文字列の個数
+* `strings.Count()`を使う
+* 例題
+  * [150 - B](./159/B/B.go)
+```go
+var patterns []string
+
+func permute(a []string, l, r int) {
+	if l == r {
+		//fmt.Println(a)
+		patterns = append(patterns, strings.Join(a, ""))
+	} else {
+		for i := l; i <= r; i++ {
+			a[l], a[i] = a[i], a[l]
+			permute(a, l+1, r)
+			a[l], a[i] = a[i], a[l] //backtrack
+		}
+	}
+}
+```
+
 ### 累乗
 * math.Pow()は、float64型なので、Int型を用意
 ```
