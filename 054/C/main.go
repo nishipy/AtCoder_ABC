@@ -112,6 +112,7 @@ func main() {
 		a, b = nextInt(), nextInt()
 		a--
 		b--
+		//隣接している節をスタック
 		matrix[a] = append(matrix[a], b)
 		matrix[b] = append(matrix[b], a)
 	}
