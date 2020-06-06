@@ -356,6 +356,8 @@ func isPrime(x int) bool {
 ```
 
 ### 素因数分解
+* 例題
+  * [169 - D](./169/D/main.go)
 ```
 func PrimeFactors(n int) (pfs []int) {
 	// Get the number of 2s that divide n
