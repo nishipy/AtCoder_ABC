@@ -1,5 +1,5 @@
-# AtCoder_ABC
-My solutions for AtCoder Beginner Contest problems.
+# kyopuro
+My solutions for kyopuro contests problems.
 
 ## Tips - Golang
 ### make関数
@@ -326,6 +326,31 @@ type SortBy []string
 func (a SortBy) Len() int           { return len(a) }
 func (a SortBy) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
 func (a SortBy) Less(i, j int) bool { return a[i] < a[j] }
+
+```
+
+* 複数要素によるソート
+  * Aの値が同じ場合は、Bの値でソートするなど
+  * 実装例: [128 - B](/128/B/main.go)
+```go
+type Catalog struct {
+	name  string
+	point int
+	id    int
+}
+
+type SortBy []Catalog
+
+func (a SortBy) Len() int      { return len(a) }
+func (a SortBy) Swap(i, j int) { a[i], a[j] = a[j], a[i] }
+func (a SortBy) Less(i, j int) bool {
+	if a[i].name < a[j].name {
+		return true
+	} else if a[i].name == a[j].name {
+		return a[i].point > a[j].point
+	} else {
+		return false
+	}
 
 ```
 ### 素数判定
