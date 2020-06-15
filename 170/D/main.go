@@ -178,28 +178,30 @@ func main() {
 	sort.Sort(SortBy(A))
 	//fmt.Println(A)
 
+	maxA := A[len(A)-1]
+	//trueで初期化
+	//dp[i]=falseのとき、iより小さいiの約数が、Aに存在しない
+	dp := make([]bool, maxA+1)
 	ans := 0
-	for i := 0; i < N; i++ {
-		if i+1 < N {
-			if A[i+1] == A[i] {
-				continue
-			}
+	for i := 0; i < N-1; i++ {
+		if dp[A[i]] == true {
+			continue
 		}
-		c := 0
-		for j := 0; j < i; j++ {
-			//fmt.Println(A[i], A[j], c)
-			if A[i]%A[j] == 0 {
-				break
-			}
-			c++
-
+		for j := 1; j <= maxA/A[i]; j++ {
+			dp[j*A[i]] = true
 		}
-		if c == i {
-			//fmt.Println(A[i])
+		if A[i] != A[i+1] {
 			ans++
 		}
+
 	}
+
+	if dp[maxA] == false {
+		ans++
+	}
+
 	fmt.Println(ans)
+
 }
 
 type SortBy []int
