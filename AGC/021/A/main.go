@@ -164,26 +164,20 @@ var (
 	}()
 )
 
-var X int
+var N string
 
 func main() {
 	sc.Split(bufio.ScanWords)
 
-	X = nextInt()
-	ans := 1
-	if X == 1 {
-		fmt.Println(ans)
-		return
-	}
-	for i := 2; i <= 100; i++ {
-		for j := 2; j <= 100; j++ {
-			y := powInt(i, j)
-			if X < y {
-				break
-			}
-			ans = maxInt(y, ans)
-		}
+	N = nextStr()
+	d := len(N)
+	n, _ := strconv.Atoi(N)
+	a, _ := strconv.Atoi(string(N[0]))
+
+	if a*powInt(10, d-1)+powInt(10, d-1)-1 == n {
+		fmt.Println(a + 9*(d-1))
+	} else {
+		fmt.Println((a - 1) + 9*(d-1))
 	}
 
-	fmt.Println(ans)
 }
