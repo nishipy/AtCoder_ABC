@@ -2,8 +2,10 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"math"
 	"os"
+	"sort"
 	"strconv"
 )
 
@@ -163,11 +165,18 @@ var (
 	}()
 )
 
-var S string
-
 func main() {
 	sc.Split(bufio.ScanWords)
 
-	S = nextStr()
+	a := make([]int, 3)
+	a[0], a[1], a[2] = nextInt(), nextInt(), nextInt()
+	sort.Ints(a)
+	m := a[2]
+
+	if m%2 == 0 {
+		fmt.Println(0)
+	} else {
+		fmt.Println(a[0] * a[1])
+	}
 
 }
