@@ -234,6 +234,22 @@ func main() {
   * string -> rune -> stringと変換していけば、安全に処理できる
 * 例ABC061 C
 
+### 文字列を含むか
+* [参考](https://qiita.com/tchnkmr/items/b3d0b884db8d7d91fb1b#%E6%96%87%E5%AD%97%E5%88%97%E4%B8%AD%E3%81%AB%E6%8C%87%E5%AE%9A%E6%96%87%E5%AD%97%E5%88%97%E3%81%8C%E5%90%AB%E3%81%BE%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%81%8B)
+```go
+s = "Alfa Bravo Charlie Delta Echo Foxtrot Golf"
+
+//文字列中に指定文字列が含まれているか
+fmt.Println(strings.Contains(s, "Delta")) // -> true
+
+//出現位置
+fmt.Println(strings.Index(s, "Delta")) // -> 19
+fmt.Println(strings.Index(s, "Hotel")) // -> -1
+fmt.Println(strings.LastIndex(s, "a")) // -> 23
+
+//出現回数
+fmt.Println(strings.Count(s, "a")) // -> 4
+```
 ### 文字列の置き換え
 * [参考](https://qiita.com/Sekky0905/items/f0bed43ad3ab4be13385)
 
