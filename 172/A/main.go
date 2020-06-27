@@ -170,28 +170,6 @@ func main() {
 	sc.Split(bufio.ScanWords)
 
 	N = nextInt()
-	x4 := 0
-	x2 := 0
-	for i := 0; i < N; i++ {
-		a := nextInt()
-		if a%4 == 0 {
-			x4++
-		} else if a%2 == 0 {
-			x2++
-		}
-	}
-	if x4 == N {
-		fmt.Println("Yes")
-		return
-	}
-	odd := N - x4 - x2
-	if x2 == 0 && absInt(odd-x4) <= 1 {
-		fmt.Println("Yes")
-		return
-	} else if x2 > 0 && x4-odd <= 1 && x4-odd >= 0 {
-		fmt.Println("Yes")
-		return
-	}
 
-	fmt.Println("No")
+	fmt.Println(powInt(N, 2) + powInt(N, 3) + N)
 }

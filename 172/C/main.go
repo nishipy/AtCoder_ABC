@@ -164,34 +164,38 @@ var (
 	}()
 )
 
-var N int
+var N, M, K int
+
+var P = powInt(10, 10)
 
 func main() {
 	sc.Split(bufio.ScanWords)
 
-	N = nextInt()
-	x4 := 0
-	x2 := 0
-	for i := 0; i < N; i++ {
-		a := nextInt()
-		if a%4 == 0 {
-			x4++
-		} else if a%2 == 0 {
-			x2++
-		}
+	N, M, K = nextInt(), nextInt(), nextInt()
+	A := make([]int, N+1)
+	B := make([]int, M+1)
+	A[0] = 0
+	for i := 1; i <= N; i++ {
+		A[i] = nextInt() + A[i-1]
 	}
-	if x4 == N {
-		fmt.Println("Yes")
-		return
-	}
-	odd := N - x4 - x2
-	if x2 == 0 && absInt(odd-x4) <= 1 {
-		fmt.Println("Yes")
-		return
-	} else if x2 > 0 && x4-odd <= 1 && x4-odd >= 0 {
-		fmt.Println("Yes")
-		return
+	B[0] = 0
+	for i := 1; i <= M; i++ {
+		B[i] = nextInt() + B[i-1]
 	}
 
-	fmt.Println("No")
+	ans := 0
+	j := M
+	for i := 0; i <= N; i++ {
+		if A[i] > K {
+			break
+		}
+		for B[j] > K-A[i] {
+			j--
+			continue
+		}
+
+		ans = maxInt(ans, i+j)
+	}
+
+	fmt.Println(ans)
 }

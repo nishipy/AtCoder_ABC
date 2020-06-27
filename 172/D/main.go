@@ -138,6 +138,46 @@ func PrimeFactors(n int) (pfs []int) {
 	return
 }
 
+func PrimeFactorsMap(n int) map[int]int {
+	pfs := map[int]int{}
+	// Get the number of 2s that divide n
+	for n%2 == 0 {
+		if _, ok := pfs[2]; ok {
+			pfs[2]++
+		} else {
+			pfs[2] = 1
+		}
+		//pfs = append(pfs, 2)
+		n = n / 2
+	}
+
+	// n must be odd at this point. so we can skip one element
+	// (note i = i + 2)
+	for i := 3; i*i <= n; i = i + 2 {
+		// while i divides n, append i and divide n
+		for n%i == 0 {
+			if _, ok := pfs[i]; ok {
+				pfs[i]++
+			} else {
+				pfs[i] = 1
+			}
+			n = n / i
+		}
+	}
+
+	// This condition is to handle the case when n is a prime number
+	// greater than 2
+	if n > 2 {
+		if _, ok := pfs[n]; ok {
+			pfs[n]++
+		} else {
+			pfs[n] = 1
+		}
+	}
+
+	return pfs
+}
+
 func sumInts(x []int) int {
 
 	total := 0
@@ -170,28 +210,19 @@ func main() {
 	sc.Split(bufio.ScanWords)
 
 	N = nextInt()
-	x4 := 0
-	x2 := 0
-	for i := 0; i < N; i++ {
-		a := nextInt()
-		if a%4 == 0 {
-			x4++
-		} else if a%2 == 0 {
-			x2++
+	f := make([]int, N+1)
+	for i := range f {
+		f[i] = 1
+	}
+	ans := 0
+	for k := 2; k <= N; k++ {
+		for j := 1; k*j <= N; j++ {
+			f[k*j]++
 		}
 	}
-	if x4 == N {
-		fmt.Println("Yes")
-		return
-	}
-	odd := N - x4 - x2
-	if x2 == 0 && absInt(odd-x4) <= 1 {
-		fmt.Println("Yes")
-		return
-	} else if x2 > 0 && x4-odd <= 1 && x4-odd >= 0 {
-		fmt.Println("Yes")
-		return
-	}
 
-	fmt.Println("No")
+	for i := 1; i <= N; i++ {
+		ans += i * f[i]
+	}
+	fmt.Println(ans)
 }

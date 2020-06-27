@@ -427,12 +427,63 @@ func PrimeFactors(n int) (pfs []int) {
 }
 ```
 
+* Mapバージョン
+```go
+func PrimeFactorsMap(n int) map[int]int {
+	pfs := map[int]int{}
+	// Get the number of 2s that divide n
+	for n%2 == 0 {
+		if _, ok := pfs[2]; ok {
+			pfs[2]++
+		} else {
+			pfs[2] = 1
+		}
+		//pfs = append(pfs, 2)
+		n = n / 2
+	}
+
+	// n must be odd at this point. so we can skip one element
+	// (note i = i + 2)
+	for i := 3; i*i <= n; i = i + 2 {
+		// while i divides n, append i and divide n
+		for n%i == 0 {
+			if _, ok := pfs[i]; ok {
+				pfs[i]++
+			} else {
+				pfs[i] = 1
+			}
+			n = n / i
+		}
+	}
+
+	// This condition is to handle the case when n is a prime number
+	// greater than 2
+	if n > 2 {
+		if _, ok := pfs[n]; ok {
+			pfs[n]++
+		} else {
+			pfs[n] = 1
+		}
+	}
+
+	return pfs
+}
+```
+
 ### 約数列挙
 * `a * a <= N`の範囲の、aを調べる
   * つまり、`Sqrt(N)`まで調べればいい
 * Nがaで割り切れる時、約数である
 * 例題
   * [144 - C](144/C/main.go)
+
+### 約数の個数
+* 1からNまでの数について、約数の個数を数え上げる場合
+  * 長さNの配列Aを作る。`A[i]`の値が約数の個数となる
+  * i = 1として、`A[(iの倍数)]`をインクリメントする
+    * iの倍数がNを超えたら止める
+* 例題
+  * [172 - D](172/D/main.go)
 
 ### [エラトステネスの篩](https://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%A9%E3%83%88%E3%82%B9%E3%83%86%E3%83%8D%E3%82%B9%E3%81%AE%E7%AF%A9)
 * 指定された整数以下の全ての素数を発見するための単純なアルゴリズム
