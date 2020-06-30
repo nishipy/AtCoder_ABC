@@ -176,6 +176,16 @@ func gcd(a, b int) int {
 }
 ```
 
+### LCM
+```go
+//gcdを使う
+func lcm(x, y int) int {
+
+	return x * y / gcd(x, y)
+
+}
+```
+
 ### GCD with math/big
 ```go
 func gcd(m, n uint64) uint64 {
