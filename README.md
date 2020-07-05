@@ -542,6 +542,17 @@ func PrimeFactorsMap(n int) map[int]int {
   * [045 C](./045/C/main.go)
   * [079 C](./079/C/main.go)
 
+```go
+for bit := 0; bit < (1 << uint64(n)); bit++ {
+  // fmt.Println(bit) // 3を入力した場合、0~7の計8つが出力される。
+  for i := 0; i < n; i++ {
+    // fmt.Println(i) // 3を入力した場合、0, 1, 2のセットが計8つが出力される。
+    if (bit>>uint64(i))&1 == 1 { // bitsのi個目の要素の状態がonかどうかチェック(ここは問題によって条件を変化させる)
+    }
+  }
+}
+```
+
 ### Greedy
 * [グリーディ法](http://www2.kobe-u.ac.jp/~ky/da2/haihu04.pdf)
   * ある段階で、最も利益の大きい部分解を選択していく
