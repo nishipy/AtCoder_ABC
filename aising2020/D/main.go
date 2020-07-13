@@ -220,55 +220,77 @@ var (
 
 func main() {
 	sc.Split(bufio.ScanWords)
-	N, X := nextInt(), nextStr()
-	pow2 := make([]int, N)
-	pow2[N-1] = 1
-	popc := strings.Count(X, "1")
-	sum := 0
-	for i := N - 2; i >= 0; i-- {
-		pow2[i] = 2 * pow2[i+1]
-		if string(X[i]) == "1" {
-			sum += pow2[i]
-		}
-	}
-	if string(X[N-1]) == "1" {
-		sum += pow2[N-1]
-	}
+	N, S := nextInt(), nextStr()
+	//もとのpopcount
+	pc := strings.Count(S, "1")
 
-	//1字ずつ処理していく
+	//数字の文字列から、[]intへの変換
+	X := make([]int, N)
 	for i := 0; i < N; i++ {
-		tmps := sum
-		tmpc := popc
-		if string(X[i]) == "1" {
-			tmps -= pow2[i]
-			tmpc--
-		} else {
-			tmps += pow2[i]
-			tmpc++
-		}
-		i := 0
-		for tmps > 0 {
-			if i == 0 {
-				tmps = tmps % tmpc
-				i++
-				continue
-			}
-			tmps = tmps % popcount(tmps)
-			i++
-		}
-		//fmt.Println(tmps, tmpc, i)
-		fmt.Println(i)
+		X[i] = int(S[i] - '0')
 	}
 
+	ans := make([]int, N)
+
+	//Xの各桁は当然1または0
+	//1の桁と0の桁に対して処理を行う
+	for b := 0; b < 2; b++ {
+		npc := pc
+		if b == 0 {
+			npc++
+		} else {
+			npc--
+		}
+		if npc <= 0 {
+			continue
+		}
+
+		//もとの数の余り
+		r0 := 0
+		for i := 0; i < N; i++ {
+			r0 = (r0 * 2) % npc
+			r0 += X[i]
+		}
+
+		//各桁を反転した余り
+		k := 1
+		for i := N - 1; i >= 0; i-- {
+			//Xの桁がb(0 or 1)と一致した場合のみ答えを求める
+			if X[i] == b {
+				r := r0
+				if b == 0 {
+					r = (r + k) % npc
+				} else {
+					//()内が負になるのを防ぐため、npcを足す
+					r = (r - k + npc) % npc
+				}
+				ans[i] = f(r) + 1
+			}
+			k = (k * 2) % npc
+		}
+	}
+
+	buf := bufio.NewWriter(os.Stdout)
+	for i := 0; i < N-1; i++ {
+		buf.Write([]byte(fmt.Sprintf("%d\n", ans[i])))
+	}
+	buf.Write([]byte(fmt.Sprintf("%d", ans[N-1])))
+	buf.Flush()
 }
 
 //popcount: 2進数表記したときの1の個数を返す
 func popcount(x int) int {
 	c := 0
-	for i := 1; i <= x; i *= 2 {
-		if x&i != 0 {
-			c++
-		}
+	for x != 0 {
+		c += x & 1
+		x >>= 1
 	}
 	return c
+}
+
+func f(x int) int {
+	if x == 0 {
+		return 0
+	}
+	return f(x%popcount(x)) + 1
 }

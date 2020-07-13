@@ -158,12 +158,33 @@ for i:= 0; i<len(array); i++ {
 }
 ```
 
+### 2進数表記のときの1の数を求める
+```go
+func popcount(x int) int {
+	c := 0
+	for x != 0 {
+		c += x & 1
+		//1ビットずらす
+		x >>= 1
+	}
+	return c
+}
+```
+
 ### 2進数に変換
 ```go
 b := fmt.Sprintf("%b", 2)
 //0埋め4文字
 //b := fmt.Sprintf("%04b", 2)
 fmt.Println(b)
+```
+
+### 数字の文字列を[]intに変換
+```go
+	X := make([]int, N)
+	for i := 0; i < N; i++ {
+		X[i] = int(S[i] - '0')
+	}
 ```
 
 ### GCD
@@ -219,6 +240,7 @@ func main() {
 ```
 
 ### rune
+* Goでは、シングルクオートがrune型を表す
 * 文字列など、文字単位で扱う時に使う
 * [String と　Rune](https://text.baldanders.info/golang/string-and-rune/)
   * 例
@@ -544,9 +566,11 @@ func PrimeFactorsMap(n int) map[int]int {
 
 ```go
 for bit := 0; bit < (1 << uint64(n)); bit++ {
-  // fmt.Println(bit) // 3を入力した場合、0~7の計8つが出力される。
+  // fmt.Println(bit)
+  // 3を入力した場合、0~7の計8つが出力される。
   for i := 0; i < n; i++ {
-    // fmt.Println(i) // 3を入力した場合、0, 1, 2のセットが計8つが出力される。
+	// fmt.Println(i)
+	// 3を入力した場合、0, 1, 2のセットが計8つが出力される。
     if (bit>>uint64(i))&1 == 1 { // bitsのi個目の要素の状態がonかどうかチェック(ここは問題によって条件を変化させる)
     }
   }
