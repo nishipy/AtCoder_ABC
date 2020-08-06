@@ -207,6 +207,31 @@ func lcm(x, y int) int {
 }
 ```
 
+### GCD/LCMのint64バージョン
+```go
+func nextInt64() int64 {
+	var i int64
+	if sc.Scan() {
+		if num, err := strconv.ParseInt(sc.Text(), 10, 64); err == nil {
+			i = num
+		}
+	}
+	return i
+}
+
+func gcd64(a, b int64) int64 {
+	if a%b != 0 {
+		return gcd64(b, a%b)
+	} else {
+		return b
+	}
+}
+
+func lcm64(a, b int64) int64 {
+	return a / gcd64(a, b) * b
+}
+```
+
 ### GCD with math/big
 ```go
 func gcd(m, n uint64) uint64 {
