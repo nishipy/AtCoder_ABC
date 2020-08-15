@@ -135,6 +135,12 @@ func str2Int(s string) int {
 }
 ```
 
+### アルファベットの扱い
+```go
+fmt.Println('a') #-> 97
+fmt.Println(string(97)) #-> a
+```
+
 ### Display []int like as string
 ```go
 //with buf.Flush()
