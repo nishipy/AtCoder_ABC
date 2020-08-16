@@ -140,7 +140,15 @@ func str2Int(s string) int {
 fmt.Println('a') #-> 97
 fmt.Println(string(97)) #-> a
 ```
+### 型ごとの最大値最小値
+[`math`](https://golang.org/pkg/math/)を使う。
 
+```go
+import math
+
+ans1 := math.MaxInt64
+ans2 := math.MinInt64
+```
 ### Display []int like as string
 ```go
 //with buf.Flush()
@@ -632,6 +640,19 @@ for bit := 0; bit < (1 << uint64(n)); bit++ {
 }
 ```
 
+#### 整数を2進数に変換
+* [参考サイト](https://ashitani.jp/golangtips/tips_num.html)
+```go
+package main
+
+import "fmt"
+
+func main() {
+    s := ""
+    s = fmt.Sprintf("%b", 255)
+	fmt.Println(s) // => "11111111"
+}
+```
 ### Greedy
 * [グリーディ法](http://www2.kobe-u.ac.jp/~ky/da2/haihu04.pdf)
   * ある段階で、最も利益の大きい部分解を選択していく
