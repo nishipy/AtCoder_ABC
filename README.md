@@ -594,6 +594,10 @@ func PrimeFactorsMap(n int) map[int]int {
   * [AGC040 - A](AGC/040/A/main.go)
     * 左に連続する`<`の個数と右の連続する`>`の個数を考える
 
+### 期待値の問題
+* 確率pで成功する試行を、成功するまで繰り返したとき、繰り返す回数の期待値は`1/p`である
+  * 例: [078 C - HSI](https://atcoder.jp/contests/abc078/tasks/arc085_a)
+  * [参考サイト](https://drken1215.hatenablog.com/entry/2019/03/23/175300)
 ## アルゴリズム系[*1]
 ### グラフ問題
 * 可視化サイト
