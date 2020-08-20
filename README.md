@@ -139,7 +139,19 @@ func str2Int(s string) int {
 ```go
 fmt.Println('a') #-> 97
 fmt.Println(string(97)) #-> a
+
+S := nextStr()
+al := make([]int, 26)
+	for i := 0; i < N; i++ {
+		al[S[i]-'a']++
+	}
 ```
+
+### int64でセイウチ
+```go
+ans := int64(0)
+```
+
 ### 型ごとの最大値最小値
 [`math`](https://golang.org/pkg/math/)を使う。
 
