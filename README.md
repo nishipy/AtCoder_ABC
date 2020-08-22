@@ -614,7 +614,7 @@ func PrimeFactorsMap(n int) map[int]int {
 ### グラフ問題
 * 可視化サイト
   * https://hello-world-494ec.firebaseapp.com/
-* 幅優先探索
+* 幅優先探索(BFS)
   * 最短距離問題に使う
     * 各節点に隣接する点を入力する
     * 次に訪問する節点を保持するキューを用意する
