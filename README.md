@@ -714,9 +714,9 @@ func main() {
   * 例
     * [C - Dubious Document 2](./076/main.go)
 
-### 2分探索(binary search)
+### 二分探索(binary search)
 #### [`sort.Search()`](https://golang.org/pkg/sort/#Search)
-* ソート済みの数列について2分探索して、初めて`f(i)`が`true`になる`i`を返す
+* ソート済みの数列について二分探索して、初めて`f(i)`が`true`になる`i`を返す
   * ただし条件を満たす`i`がない場合は、`len(data)+1`を返す
 * C++の`lower_bound()`、pythonの`bisec()`みたいな関数
 * 例
