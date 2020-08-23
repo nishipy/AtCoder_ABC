@@ -184,6 +184,18 @@ for i:= 0; i<len(array); i++ {
 }
 ```
 
+### sliceのappend
+```go
+var s []int
+//要素の追加
+s = append(s, 1)
+
+//slice同士の連結 → `...`をつける
+var t = []int{1, 2, 3}
+
+s = append(s, t...)
+```
+
 ### 2進数表記のときの1の数を求める
 ```go
 func popcount(x int) int {
@@ -614,13 +626,23 @@ func PrimeFactorsMap(n int) map[int]int {
 ### グラフ問題
 * 可視化サイト
   * https://hello-world-494ec.firebaseapp.com/
-* 幅優先探索(BFS)
+* [幅優先探索(BFS)](https://qiita.com/drken/items/996d80bcae64649a6580)
   * 最短距離問題などによく使う
     * 各節点に隣接する点を保持しておく
-    * 次に訪問する節点を保持するキューを用意する。始点をキューに入れておく
-      * キューから取り出し、その点(v)について処理
-      * 処理した節点に隣接する点をキュー
-        * ただし既に訪問済みであれば、スキップ
+    * 訪問済みの点のリストを用意する
+      * `dist`(始点からの距離)として用意して、`-1`で初期化するのが便利
+        * ただし`dist[始点]=0`としておく
+      * `-1`のときは、未訪問と見なす
+      * 探索後`dist[v]`は、始点からvへの最短距離を表す
+    * 次に訪問する節点を保持するキューを用意する。初回は、始点をキューに入れておく
+      * キューから取り出す(`v`)
+      * 次に訪問する点(`next`)について考える
+        * 未訪問(`dist[next]==-1`)の場合は、この点について処理
+          * 距離の情報を更新
+            * `dist[next] = dist[v]+1`
+          * キューに追加
+            * `q = q.append(q, next)`
+        * 訪問済みの場合は`continue`でスキップ
       * キューが空になるまで処理を繰り返す
     * 例
       * [ABC160 D - Line++](./160/D/main.go)
@@ -691,6 +713,24 @@ func main() {
     * `sort.Strings(cad)`など
   * 例
     * [C - Dubious Document 2](./076/main.go)
+
+### 2分探索(binary search)
+#### [`sort.Search()`](https://golang.org/pkg/sort/#Search)
+* ソート済みの数列について2分探索して、初めて`f(i)`が`true`になる`i`を返す
+  * ただし条件を満たす`i`がない場合は、`len(data)+1`を返す
+* C++の`lower_bound()`、pythonの`bisec()`みたいな関数
+* 例
+  * [143 D - Triangles](./143/D/main.go)
+```go
+x := 23
+i := sort.Search(len(data), func(i int) bool { return data[i] >= x })
+if i < len(data) && data[i] == x {
+	// x is present at data[i]
+} else {
+	// x is not present in data,
+	// but i is the index where it would be inserted.
+}
+```
 
 ## 動的計画法(DP)
 * 値を覚えて再利用することで、処理を効率化する
