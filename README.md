@@ -161,6 +161,7 @@ import math
 ans1 := math.MaxInt64
 ans2 := math.MinInt64
 ```
+
 ### Display []int like as string
 ```go
 //with buf.Flush()
@@ -223,6 +224,75 @@ fmt.Println(b)
 	for i := 0; i < N; i++ {
 		X[i] = int(S[i] - '0')
 	}
+```
+
+### sliceのコピー
+* `copy(t, s)`で、**sをtにコピー**する。
+  * t->sにコピー**ではない！**
+* コピーした要素の数が返ってくる
+```go
+package main
+import "fmt"
+
+func main() {
+    s := []int{0, 10, 20, 30}
+    t := make([]int, len(s))
+    n := copy(t, s)
+
+    fmt.Println(t)
+    fmt.Println(n)
+}
+```
+
+### next_permutation
+* [これ参照](https://play.golang.org/p/ljft9xhOEn)
+* 順列で次にくるものを返してくれる
+```go
+package main
+
+import (
+	"fmt"
+	"sort"
+)
+
+// NextPermutation generates the next permutation of the
+// sortable collection x in lexical order.  It returns false
+// if the permutations are exhausted.
+//
+// Knuth, Donald (2011), "Section 7.2.1.2: Generating All Permutations",
+// The Art of Computer Programming, volume 4A.
+func NextPermutation(x sort.Interface) bool {
+	n := x.Len() - 1
+	if n < 1 {
+		return false
+	}
+	j := n - 1
+	for ; !x.Less(j, j+1); j-- {
+		if j == 0 {
+			return false
+		}
+	}
+	l := n
+	for !x.Less(j, l) {
+		l--
+	}
+	x.Swap(j, l)
+	for k, l := j+1, n; k < l; {
+		x.Swap(k, l)
+		k++
+		l--
+	}
+	return true
+}
+
+func main() {
+	x := []int{0, 1, 1, 3} // expect 12 permutations
+	fmt.Println(0, x)
+
+	for i := 1; NextPermutation(sort.IntSlice(x)); i++ {
+		fmt.Println(i, x)
+	}
+}
 ```
 
 ### GCD
