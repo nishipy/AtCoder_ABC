@@ -354,6 +354,15 @@ func gcd(m, n uint64) uint64 {
 
 ### Define and use map
 ```go
+	a := make(map[int]int)
+	//fmt.Println(a)
+	for i := 0; i < N; i++ {
+		x := nextInt()
+		a[x]++
+	}
+	fmt.Println(a)
+```
+```go
 func main() {
 	sc.Split(bufio.ScanWords)
 	n = nextInt()
@@ -371,6 +380,7 @@ func main() {
 	fmt.Println(len(m))
 }
 ```
+
 
 ### rune
 * Goでは、シングルクオートがrune型を表す
@@ -728,7 +738,7 @@ func PrimeFactorsMap(n int) map[int]int {
 ### bit全探索
 * 2^n通りの組み合わせを、2進数を用いて解くやつ
   * [Golangのビット演算](https://hydrocul.github.io/wiki/programming_languages_diff/number/bit-operator.html)
-    * `&`, `|` : AND, OR
+    * `&`, `|`, `^` : AND, OR, XOR
     * `<<`: 左シフト。整数を2倍
       * `1 << n`で、2^nを表す。
     * `>>`: 右シフト。整数を1/2倍
