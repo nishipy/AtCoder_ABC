@@ -834,9 +834,60 @@ if i < len(data) && data[i] == x {
 
 ## Union-Find木
 * グループ分けを、木構造で管理する
-* [例題](https://atcoder.jp/contests/atc001/tasks/unionfind_a)
+  * 友達のグループ分けなどの問題で使う
+* [練習問題](https://atcoder.jp/contests/atc001/tasks/unionfind_a)
   * [実装例](./ATC001/B/main.go)
+* 例題
+  * [177 D - Friends](./177/D/main.go)
+```go
+//https://qiita.com/haru1843/items/2295d0ec1f5002bd5c33
+type UnionFind struct {
+    par []int
+}
 
+/* コンストラクタ */
+func newUnionFind(N int) *UnionFind {
+    u := new(UnionFind)
+    u.par = make([]int, N)
+    for i := range u.par {
+        u.par[i] = -1
+    }
+    return u
+}
+
+/* xの所属するグループを返す */
+func (u UnionFind) root(x int) int {
+    if u.par[x] < 0 {
+        return x
+    }
+    u.par[x] = u.root(u.par[x])
+    return u.par[x]
+}
+
+/* xの所属するグループ と yの所属するグループ を合体する */
+func (u UnionFind) unite(x, y int) {
+    xr := u.root(x)
+    yr := u.root(y)
+    if xr == yr {
+        return
+    }
+    u.par[yr] += u.par[xr]
+    u.par[xr] = yr
+}
+
+/* xとyが同じグループに所属するかどうかを返す */
+func (u UnionFind) same(x, y int) bool {
+    if u.root(x) == u.root(y) {
+        return true
+    }
+    return false
+}
+
+/* xの所属するグループの木の大きさを返す */
+func (u UnionFind) size(x int) int {
+    return -u.par[u.root(x)]
+}
+```
 ## データ構造
 * priority_queue
   * [例題](https://atcoder.jp/contests/code-thanks-festival-2017-open/tasks/code_thanks_festival_2017_c)
