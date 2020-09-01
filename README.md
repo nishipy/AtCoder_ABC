@@ -86,6 +86,11 @@ func main() {
 ...
 ```
 
+### float型のインプット
+```go
+a := float64(nextInt())
+```
+
 ### Min(), Max() for int
 ```go
 func Max(a, b int) int {
@@ -745,11 +750,12 @@ func PrimeFactorsMap(n int) map[int]int {
 * 例
   * [045 C](./045/C/main.go)
   * [079 C](./079/C/main.go)
+  * [128 C](./128/C/main.go)
 
 ```go
 for bit := 0; bit < (1 << uint64(n)); bit++ {
   // fmt.Println(bit)
-  // 3を入力した場合、0~7の計8つが出力される。
+  // n=3を入力した場合、0~7の計8つが出力される。
   for i := 0; i < n; i++ {
 	// fmt.Println(i)
     if (bit>>uint64(i))&1 == 1 { // bitsのi個目の要素の状態がonかどうかチェック(ここは問題によって条件を変化させる)
