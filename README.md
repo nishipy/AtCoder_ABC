@@ -801,11 +801,23 @@ func main() {
     * [C - Dubious Document 2](./076/main.go)
 
 ### 二分探索(binary search)
+> 一般には、正の整数 N に対して単調増加な式 f(N) があるとき、
+> * f(N)≤X を満たす最大の正の整数 N 
+> は、二分探索によって求めることができる
+
+* 具体的には、
+  * mid = (left + right) / 2
+    * f(mid) > X であれば、right = mid とする
+    * f(mid) ≤ X であれば、left = mid とする
+* 例題
+  * [AtCoder ABC 146 C - Buy an Integer](https://drken1215.hatenablog.com/entry/2020/01/05/154700)
+    * [提出例](./146/C/main.go)
+
 #### [`sort.Search()`](https://golang.org/pkg/sort/#Search)
 * ソート済みの数列について二分探索して、初めて`f(i)`が`true`になる`i`を返す
   * ただし条件を満たす`i`がない場合は、`len(data)+1`を返す
 * C++の`lower_bound()`、pythonの`bisec()`みたいな関数
-* 例
+* 例題
   * [143 D - Triangles](./143/D/main.go)
 ```go
 x := 23
@@ -818,9 +830,12 @@ if i < len(data) && data[i] == x {
 }
 ```
 
+
 ## 動的計画法(DP)
 * 値を覚えて再利用することで、処理を効率化する
-* [ナップザック問題](https://onlinejudge.u-aizu.ac.jp/problems/DPL_1_B)
+* 例題
+  * [129 C - Typical Stairs](./129/C/main.go)
+### [ナップザック問題](https://onlinejudge.u-aizu.ac.jp/problems/DPL_1_B)
   * [解説記事](https://qiita.com/drken/items/a5e6fe22863b7992efdb)
     * `dp[i][w]`を、i番目までの商品の中から容量を超えないように選んだときの価値の総和の最大値とする
     * これを漸化式と見立てて解いていく
@@ -828,7 +843,7 @@ if i < len(data) && data[i] == x {
   * 他の例題
     * [TDPC - A](TDPC/A/main.go)
     * [TDPC - C](TDPC/C/main.go)
-* [最長共通部分列][http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_10_C&lang=jp]
+### [最長共通部分列][http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_10_C&lang=jp]
   * コードは、[こちら](./AOJ/ALDS1_10_C/main.go#l75)
   * 文字列S1とS2の最長共通部分を求める問題
     * `dp[i][j]`に、`S1`のi文字目までと`S2`のj文字目までの最長共通部分列の長さを格納する
