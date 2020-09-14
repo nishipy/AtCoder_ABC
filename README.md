@@ -172,8 +172,9 @@ ans2 := math.MinInt64
 //with buf.Flush()
 func printList(list []int) {
 	buf := bufio.NewWriter(os.Stdout)
-	for _, v := range list {
-		buf.Write([]byte(fmt.Sprintf(" %d", v)))
+	buf.Write([]byte(fmt.Sprintf("%d", list[0])))
+	for i := 1; i < len(list); i++ {
+		buf.Write([]byte(fmt.Sprintf(" %d", list[i])))
 	}
 	buf.Write([]byte("\n"))
 	buf.Flush()
